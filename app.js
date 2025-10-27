@@ -15,7 +15,7 @@ function mensagemInicial (tag, texto) {
 }
 
 function limparCampoDeInput() {
-    chute = document.querySelector('input');
+    let chute = document.querySelector('input');
     chute.value = '';
 }
 
