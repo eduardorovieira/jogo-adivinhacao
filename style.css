@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --corDoFundo1: #0066ff;
+    --corDoFundo2: #001242;
+    --corAuxiliar: #a5c7ff;
+    --corDoTexto: white;
+    --efeitoBlur: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(45deg, var(--corDoFundo2), var(--corDoFundo1));
+    color: var(--corDoTexto);
+
+    /*Procurar outra fonte*/
+    font-family: 'Chakra Petch', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    background:var(--efeitoBlur);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--efeitoBlur);
+    border-radius: 24px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+main::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--efeitoBlur) 0%, transparent 60%);
+    transform: rotate(0deg);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    background: linear-gradient(135deg, var(--corDoTexto),var(--corAuxiliar));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+input {
+    background: var(--efeitoBlur);
+    border: 2px solid var(--efeitoBlur);
+    border-radius: 16px;
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Testar para ver se remove aqueles botoes que aumentam e diminuem o numero */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.8rem 1.5rem;
+    border-radius: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
